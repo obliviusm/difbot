@@ -2,25 +2,25 @@ require_relative "difbot/version"
 require 'unirest'
 
 module Difbot
-  class << self
-    attr_accessor :config
+	class << self
+		attr_accessor :config
 
-    def analyse(type, url, options = {})
-  	  options[:token] = Difbot.config.token unless options.has_key?(:token)
-  	  options[:url] = url
-  	  response = Unirest::get "http://api.diffbot.com/v2/#{type}", parameters: options
-	  response.body
-  	end
-  end
+		def analyse(type, url, options = {})
+			options[:token] = Difbot.config.token unless options.has_key?(:token)
+			options[:url] = url
+			response = Unirest::get "http://api.diffbot.com/v2/#{type}", parameters: options
+			response.body
+		end
+	end
 
-  def self.configure
-    self.config ||= Configuration.new
-    yield(config)
-  end
+	def self.configure
+		self.config ||= Configuration.new
+		yield(config)
+	end
 
-  class Configuration
-    attr_accessor :token
-  end
+	class Configuration
+		attr_accessor :token
+	end
 end
 
 
