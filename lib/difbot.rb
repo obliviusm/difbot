@@ -23,18 +23,22 @@ module Difbot
 	end
 end
 
-
+=begin
+#data:
 token = "55b926c2d517a686c705a3846534f87a"
 type = "article"
 url = "http://korrespondent.net/ukraine/politics/3282899-mnoho-chesty-myd-otkazalsia-reahyrovat-na-vyskazyvanyia-zadornova-o-evrokhokhlakh"
-=begin
+
+#with config:
 Difbot.configure do |config|
   config.token = token
 end
 p Difbot.config.token
 p Difbot.analyse(type, url)
-=end
+
+#without config, with options: 
 options = Hash.new
 options[:token] = token
 options[:fields] = "meta,querystring,images(url,pixelHeight)"
 p Difbot.analyse(type, url, options)
+=end
